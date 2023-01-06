@@ -1,0 +1,8 @@
+export const GroupActionTypes = {
+    SET_ALL_GROUPS: 'SET_ALL_GROUPS',
+    ADD_GROUP: 'ADD_GROUP',
+    UPDATE_SELECTED_GROUP: 'UPDATE_SELECTED_GROUP',
+    REMOVE_SELECTED_POST: 'REMOVE_SELECTED_POST'
+};
+
+export default GroupActionTypes;

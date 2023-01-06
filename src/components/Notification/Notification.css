@@ -1,0 +1,27 @@
+.notification{
+    font-size: 25px;
+    cursor: pointer;
+    position: relative;
+}
+.notification:hover{
+    color: blue;
+
+}
+.length-show{
+    position: absolute;
+    font-size: 14px;
+    top: -8px;
+    right: -5px;
+    color: white;
+    font-weight: bold;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background-color: rgb(245, 67, 67);
+    justify-content: center;
+    display: flex;
+    align-items: center; 
+}
+a{
+    text-decoration: none;
+}
