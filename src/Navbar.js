@@ -25,8 +25,9 @@ function Navbar({user,currentUser,logOut}) {
             FirebaseSerive.getAvatarFromFirebase(response.data.avatar).then((response) => {
                 setAvatar(response)
             })
+            
         })
-        
+
     },[])
 
 
@@ -90,11 +91,7 @@ function Navbar({user,currentUser,logOut}) {
               
             </li>
             <NotificationList currentUser = {currentUser} socket={socket}/>
-            <li style={{marginTop:"10px"}}>
-              <Link className="notification" to={"/conversation"} style={{fontSize:"22px"}}>
-                  <i className="ti-comment" ></i>
-              </Link><span className="length-show">1</span>
-            </li>
+
 				<li>
         <button type="button" className="notification btn btn-light">
           <Link className="text-decoration-none" to={"/conversation"} title="Messages" data-ripple=""><i className="fa fa-comment"></i>

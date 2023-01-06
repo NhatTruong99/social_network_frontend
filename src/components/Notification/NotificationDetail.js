@@ -21,17 +21,18 @@ function NotificationDetail({noty,handle}){
 
     return (
         <li>
-            <p title="">
+            <div title="">
                 <img src={avatar} alt="" />
+                <div className="mesg-meta" >
                 <Link to={noty.url} onClick={() => handleRead(noty.id)}>
-                    <div className="mesg-meta" >
                         <h6 style={{marginBottom: "0px"}}>{noty.senderProfile.firstName + " " + noty.senderProfile.lastName}</h6>
                         <span>{noty.activityType === 1 ? "đã gửi lời mời kết bạn" : noty.activityType === 2 ? "đã like bài viết của bạn" : "đã comment bài post của bạn"}</span>
                         <i>{noty.timeSent}</i>
-                    </div>
                 </Link >
-            </p>
-            {noty.isRead == 1 && <span class="tag green">New</span>}
+                </div>
+
+            </div>
+            {noty.isRead == 1 && <span className="tag green">New</span>}
         </li> 
     )
 }

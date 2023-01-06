@@ -32,6 +32,7 @@ const checkIsRequesting = async (currentUserID,userId) => {
     return listCurrentUserRequesting.some(userProfile => userProfile.user.id == userId)
 }
 
+//hàm kiểm tra current user có đang gửi kết bạn cho user hay khống
 const checkIsRequester = async (currentUserID,userId) => {
     const listCurrentUserRequester = await getListRequester(currentUserID).then(res => res.data);
     return listCurrentUserRequester.some(userProfile => userProfile.user.id == userId)

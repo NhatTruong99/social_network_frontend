@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect ,useRef } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ReactEmoji from 'react-emoji';
 
 import PostHistory from "./PostHistory";
@@ -14,12 +14,11 @@ import UserService from "../../services/user.service";
 import ProfileService from "../../services/ProfileService";
 import { removePost } from "../../redux/actions/PostActions";
 import { getPassedTime } from "../../utils/spUtils";
-import NotificationService from "../../services/NotificationService";
 
 const Post = ({ data, callBack, selected, onShowModal }) => {
     const currentUser = AuthService.getCurrentUser();
     const formRef = useRef([]);
-    const { socket } = useSelector(state => state.socket);
+
     const [images, setImages] = useState([]);
     const [avatar,setAvatar] = useState(null);
     const [isShowed, setIsShowed] = useState(false);
@@ -109,10 +108,7 @@ const Post = ({ data, callBack, selected, onShowModal }) => {
     const handleLikePost = async (event) => {
         await UserService.likePost(data.id, currentUser.id)
               .then((res) => {
-                  NotificationService.createNotification(currentUser.id,data.id,`/detail/post/${res.data.post.id}`,2)
-                  .then(noty => {
-                    socket.emit("sendNotification",noty.data)
-                  })  
+                  // console.log(res.data);
                   readTotalLikes();
   
               })

@@ -49,16 +49,15 @@ function CommentsList({post}) {
 
     CommentService.createComment(temp).then((res)=>{
       increaseRenderValue();
-      NotificationService.createNotification(user.id,post.user.id,`/detail/post/${res.data.post.id}`,3).then(noty => {
+
+      NotificationService.createNotification(user.id,post.user.id,`profile/${post.user.id}`,3).then(noty => {
         socket.emit("sendNotification",noty.data)
       })
-      
+
     }).catch((err)=>{
         console.log(err)
     });
     
-    
-
     setInputComment('');
   }
 
@@ -72,8 +71,16 @@ function CommentsList({post}) {
         }
       }
 }
+ 
 
   return (
+
+
+
+
+
+
+    
             <div className="">
                <form className="border border-dark mb-2">
                <div className="form-group  ">

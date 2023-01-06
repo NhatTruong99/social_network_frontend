@@ -12,15 +12,15 @@ function CardUser({user}) {
     },[])
 
     return (
-    <li>
+    <>
         <figure>
-            <img src={avatar} alt=""/>
-            <span className="status f-online"></span>
-        </figure>
-        <div className="friendz-meta">
-            <Link to={"/profile/" + user.user.id} >{user.firstName + " " + user.lastName}</Link>
-        </div>
-    </li>
+        <img src={avatar} alt=""/>
+        <span className="status f-online"></span>
+    </figure>
+    <div className="friendz-meta">
+        <Link to={"/profile/" + user.user.id} >{user.firstName + " " + user.lastName}</Link>
+    </div>
+    </>
     )
 }
 

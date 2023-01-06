@@ -8,6 +8,7 @@ import NotificationService from '../../services/NotificationService';
 function ButtonFriend(props){
 
     const { socket } = useSelector(state => state.socket);
+
     // -------------
     const [isFriend,setIsFriend] = useState()
     const [isRequesting, setIsRequesting] = useState()
@@ -16,26 +17,48 @@ function ButtonFriend(props){
     const currentUser = AuthService.getCurrentUser();
 
     useEffect(() =>{
-        FriendService.checkIsFriend(currentUser.id,props.userID).then(res => setIsFriend(res))
-        FriendService.checkIsRequesting(currentUser.id,props.userID).then(res => setIsRequesting(res))
-        FriendService.checkIsRequester(currentUser.id,props.userID).then(res => setIsRequester(res))
+        FriendService.checkIsFriend(currentUser.id,props.userID).then(res => 
+          {
+            setIsFriend(res)
+          }
+        )
+        FriendService.checkIsRequesting(currentUser.id,props.userID).then(res => 
+          {
+            setIsRequesting(res)
+          }
+        )
+        FriendService.checkIsRequester(currentUser.id,props.userID).then(res => 
+          {
+            setIsRequester(res)
+          }
+        )
     },[props.userID,change])
 
     const handleAddRequest = () => {
-      //tạo thông báo
+
       NotificationService.createNotification(currentUser.id,props.userID,`profile/${currentUser.id}`,1).then(noty => {
         socket.emit("sendNotification",noty.data)
+
+        console.log(noty.data)
       })
-      //hàm add request friend
       FriendService.addRequest(currentUser.id,props.userID).then(res => setChange(!change))
     }
 
     const handleRemoveFriendShip = () => {
-      FriendService.removeFriendShip(currentUser.id,props.userID).then(res => setChange(!change))
+      FriendService.removeFriendShip(currentUser.id,props.userID).then(res => 
+        {
+          setChange(!change)
+        }
+      )
     }
 
     const handleAcceptRequest = () => {
-      FriendService.acceptRequest(currentUser.id,props.userID).then(res => setChange(!change))
+      FriendService.acceptRequest(currentUser.id,props.userID).then(res => 
+        {
+          setChange(!change)
+        }
+      )
+      
     }
 
     if (isFriend){
@@ -60,7 +83,7 @@ function ButtonFriend(props){
             return (
               <div className="button_friend">
                 <button 
-                    className="btn btn-primary "
+                    className="btn btn-primary"
                     onClick={handleAcceptRequest}
                 >Chấp nhận lời mời</button>
               </div>
@@ -69,7 +92,7 @@ function ButtonFriend(props){
                   return (
                     <div className="button_friend">
                       <button 
-                          className="btn btn-info "
+                          className="btn btn-info"
                           onClick={handleAddRequest}
                       >Kết bạn</button>
                     </div>

@@ -30,6 +30,7 @@ function ProfileComponent() {
     //0:timeline, 1:listFriend
     const [stateSwitch,setStateSwitch] = useState(0)
 
+
     const [userProfileID,setUserProfileID] = useState(0)
     const [firstName,setFirstName] = useState('')
     const [lastName,setLastName] = useState('')
@@ -88,6 +89,7 @@ function ProfileComponent() {
         FriendService.getListFriend(userID).then(res => setListFriend(res.data))
 
         checkCurrentUserProfile()
+        checkCurrentUserProfile()
     },[userID])
 
    const checkCurrentUserProfile = () => {
@@ -98,11 +100,6 @@ function ProfileComponent() {
     }
    }
 
-  //  const handleChangeStateSwitch = (e,idState) => {
-  //   console.log(e.target);
-  //     e.target.classList.toggle("active")
-  //     setStateSwitch(idState) 
-  //  }
 
     
   
@@ -292,6 +289,11 @@ function ProfileComponent() {
             , height:"600px"}}>
               </div>
       </figure>
+			<div className="add-btn">
+      {!isCurrentProfile && <ButtonFriend 
+              userID = {userID} 
+          />}
+			</div>
 			<form className="edit-phto">
 				<i className="fa fa-camera-retro"></i>
 				<label className="fileContainer">
@@ -323,20 +325,13 @@ function ProfileComponent() {
 								</li>
 								<li style={{marginRight: "150px"}}>
 									<Link className="" onClick={() => setStateSwitch(0)}>Time Line</Link>
-									<Link className=""  title="" data-ripple="">Photos</Link>
-									<Link className=""  title="" data-ripple="">Videos</Link>
 									{isCurrentProfile && <Link className=""  onClick={() => setStateSwitch(1)}>Friends</Link>}
-									<Link className=""  title="" data-ripple="">Groups</Link>
-									<Link className=""  title="" data-ripple="">about</Link>
-									<Link className=""  title="" data-ripple="">more</Link>
+								
 								</li>
-                <li >
-                    {!isCurrentProfile && <ButtonFriend userID = {userID} />}
-                </li>
+                
 							</ul>
 						</div>
 					</div>
-          
 				</div>
 			</div>
 		</div>

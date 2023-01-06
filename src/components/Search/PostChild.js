@@ -16,14 +16,15 @@ function PostChild({postWithUser}){
 
     return (
         <div class="central-meta item">
-            <Link to={"/detail/post/" + postWithUser.post.id}>
             <div class="user-post">
                 <div class="friend-info">
                     <figure>
                         <img src={avatar} alt=""/>
                     </figure>
                     <div class="friend-name">
-                        <ins>{userProfile.firstName + " " + userProfile.lastName}</ins>
+                        <ins><Link to={"/profile/" + userProfile.user.id} title="">
+                            {userProfile.firstName + " " + userProfile.lastName}
+                        </Link></ins>
                         <span>{post.publishedDate}</span>
                     </div>
                     <div class="description">
@@ -31,8 +32,6 @@ function PostChild({postWithUser}){
                     </div>
                 </div>
             </div>
-            </Link>
-            
         </div>
     )
 }

@@ -52,4 +52,3 @@ function ListFriend({userCurrentID}){
 }
 
 export default ListFriend
-                       
